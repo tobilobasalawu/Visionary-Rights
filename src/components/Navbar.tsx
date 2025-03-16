@@ -4,6 +4,12 @@ import React from 'react';
 import { useState } from 'react';
 import Image from 'next/image';
 import { InfoIcon } from 'lucide-react';
+import {
+  Avatar,
+  AvatarFallback,
+  AvatarImage,
+} from "@/components/ui/avatar"
+
 
 export default function Navbar() {
   const [showTooltip, setShowTooltip] = useState(false);
@@ -26,20 +32,13 @@ export default function Navbar() {
             <InfoIcon className="h-5 w-5 text-primary" />
           </a>
           
-          {/* Moon Icon for Dark Mode */}
-          <button className="p-2 rounded-full hover:bg-secondary transition-colors">
-            <MoonIcon className="h-5 w-5 text-primary" />
-          </button>
           
           {/* User Profile Picture */}
           <div className="h-9 w-9 rounded-full overflow-hidden border border-border">
-            <Image 
-              src="/placeholder.svg?height=36&width=36" 
-              alt="User profile picture" 
-              width={36} 
-              height={36}
-              className="object-cover"
-            />
+          <Avatar>
+            <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
+            <AvatarFallback>CN</AvatarFallback>
+          </Avatar>
           </div>
         </div>
       </div>
