@@ -5,11 +5,11 @@ export default function ModelSelector() {
     <div className="flex bg-white rounded-lg shadow-lg p-1">
       <button className="flex items-center gap-2 bg-secondary rounded-md px-4 py-2 text-sm font-medium">
         <SparkleIcon className="h-4 w-4 text-primary" />
-        GPT-3.5
+        VR - 5 
       </button>
       <button className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-muted-foreground hover:bg-secondary rounded-md transition-colors">
         <LightningIcon className="h-4 w-4" />
-        GPT-4
+        VR - 4 
       </button>
     </div>
   );

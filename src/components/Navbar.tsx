@@ -1,18 +1,19 @@
 import React from 'react';
 import Image from 'next/image';
+import { InfoIcon } from 'lucide-react';
 
 export default function Navbar() {
   return (
-    <header className="w-full bg-white border-b border-border shadow-sm">
+    <header className="w-full mt-4">
       <div className="container mx-auto px-4 h-16 flex items-center justify-between">
         <div className="flex items-center">
           <h1 className="text-2xl font-bold text-[#0a2472]">Visionary Rights</h1>
         </div>
         
-        <div className="flex items-center space-x-4">
+        <div className="flex w-30 items-center space-x-4 shadow-lg mx-2 p-2 rounded-lg">
           {/* Notification Bell Icon */}
           <button className="p-2 rounded-full hover:bg-secondary transition-colors">
-            <BellIcon className="h-5 w-5 text-primary" />
+            <InfoIcon className="h-5 w-5 text-primary" />
           </button>
           
           {/* Moon Icon for Dark Mode */}

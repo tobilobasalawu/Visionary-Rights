@@ -1,40 +1,36 @@
 import React from 'react';
 import ModelSelector from './ModelSelector';
-import ChatMessage from './ChatMessage';
 import ChatInput from './ChatInput';
 
 export default function ChatInterface() {
   return (
-    <div className="max-w-4xl mx-auto flex flex-col gap-6">
-      {/* Model Selector */}
-      <div className="flex justify-center mt-4">
-        <ModelSelector />
+    <div className="flex flex-col items-center min-h-screen" style={{ marginTop: '10rem' }}>
+      <div className="max-w-4xl mx-auto flex flex-col gap-6">
+        {/* Model Selector */}
+        <div className="flex justify-center mt-4">
+          <ModelSelector />
+        </div>
+        
+        {/* Regenerate Button */}
+        <div className="flex justify-center mt-4">
+          <button className="flex items-center gap-2 text-primary border border-border rounded-full px-4 py-2 hover:bg-secondary transition-colors">
+            <RefreshIcon className="h-4 w-4" />
+            Regenerate response
+          </button>
+        </div>
+        
+        {/* Chat Input */}
+        <div className="mt-4 mb-8 flex justify-center">
+          <div className="w-full max-w-md">
+            <ChatInput />
+          </div>
+        </div>
+        
+        {/* Footer */}
+        <div className="text-xs text-muted-foreground text-center mt-4">
+          <p>Free Research Preview. Visionaary Rights may produce inaccurate information about people, places, or facts. <span className="text-primary font-medium">Visionary Rights 2025</span></p>
+        </div>
       </div>
-      
-    
-      {/* Chat Messages */}
-      <div className="mt-4">
-        <ChatMessage />
-      </div>
-      
-      {/* Regenerate Button */}
-      <div className="flex justify-center mt-4">
-        <button className="flex items-center gap-2 text-primary border border-border rounded-full px-4 py-2 hover:bg-secondary transition-colors">
-          <RefreshIcon className="h-4 w-4" />
-          Regenerate response
-        </button>
-      </div>
-      
-      {/* Chat Input */}
-      <div className="mt-4">
-        <ChatInput />
-      </div>
-      
-      {/* Footer */}
-      <div className="text-xs text-muted-foreground text-center mt-4">
-        <p>Free Research Preview. Visionaary Rights may produce inaccurate information about people, places, or facts. <span className="text-primary font-medium">Visionary Rights 2025</span></p>
-      </div>
-      
     </div>
   );
 }
