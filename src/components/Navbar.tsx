@@ -1,8 +1,13 @@
+'use client'
+
 import React from 'react';
+import { useState } from 'react';
 import Image from 'next/image';
 import { InfoIcon } from 'lucide-react';
 
 export default function Navbar() {
+  const [showTooltip, setShowTooltip] = useState(false);
+
   return (
     <header className="w-full mt-4">
       <div className="container mx-auto px-4 h-16 flex items-center justify-between">
@@ -10,11 +15,16 @@ export default function Navbar() {
           <h1 className="text-2xl font-bold text-[#0a2472]">Visionary Rights</h1>
         </div>
         
-        <div className="flex w-30 items-center space-x-4 shadow-lg mx-2 p-2 rounded-lg">
-          {/* Notification Bell Icon */}
-          <button className="p-2 rounded-full hover:bg-secondary transition-colors">
+        <div className="flex w-30 items-center space-x-4 shadow-lg mx-2 p-2 rounded-lg relative">
+          {/* Info Icon as a link to GitHub */}
+          <a 
+            href="https://github.com/tobilobasalawu/Visionary-Rights" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="p-2 rounded-full hover:bg-secondary transition-colors"
+          >
             <InfoIcon className="h-5 w-5 text-primary" />
-          </button>
+          </a>
           
           {/* Moon Icon for Dark Mode */}
           <button className="p-2 rounded-full hover:bg-secondary transition-colors">
