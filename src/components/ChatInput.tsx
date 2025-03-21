@@ -9,8 +9,12 @@ export default function ChatInput({ onSend }) {
 
   const handleSend = async () => {
     if (inputValue.trim() === '') return;
-    await onSend(inputValue);
-    setInputValue('');
+    try {
+      await onSend(inputValue);
+      setInputValue('');
+    } catch (error) {
+      console.error("Error sending message:", error);
+    }
   };
 
   return (

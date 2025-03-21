@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import ChatInput from './ChatInput';
 
+
 export default function ChatInterface() {
   const [messages, setMessages] = useState([]); // State to hold messages
 
@@ -11,14 +12,23 @@ export default function ChatInterface() {
 
     // Call the API to get the AI response
     try {
-      const response = await fetch('/api/rights', {
+      const response = await fetch('http://localhost:3001/api/rights', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({ situation }),
       });
+
+      // Check if the response is successful
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      
       const data = await response.json();
+
+      // Log the data received from the API
+      console.log("Data received from API:", data);
 
       // Add AI response to the messages state
       setMessages((prev) => [...prev, { text: data.rights, sender: 'ai' }]);
