@@ -4,11 +4,16 @@ import ChatInput from './ChatInput';
 export default function ChatInterface() {
   return (
     <div className="flex flex-col items-center min-h-screen" style={{ marginTop: '10rem' }}>
-      <div className="max-w-4xl mx-auto flex flex-col gap-6">
+      <div className="max-w-4xl mx-auto flex flex-col gap-12">
+
+      <div>
+        <h2 className="text-2xl font-bold mb-6 text-center">Describe Your Situation</h2>
+        <h3 className="text-xl mb-6 text-center">Provide details about your legal situation, and we'll help you understand your rights.</h3>
+      </div>
         
         {/* Chat Input */}
-        <div className="mt-4 mb-8 flex justify-center">
-          <div className="w-full max-w-md">
+        <div>
+          <div>
             <ChatInput />
           </div>
         </div>
