@@ -1,26 +1,65 @@
-import React from 'react';
+'use client';
+import React, { useState } from 'react';
 import ChatInput from './ChatInput';
 
 export default function ChatInterface() {
-  return (
-    <div className="flex flex-col items-center min-h-screen" style={{ marginTop: '10rem' }}>
-      <div className="max-w-4xl mx-auto flex flex-col gap-12">
+  const [messages, setMessages] = useState([]); // State to hold messages
 
-      <div>
-        <h2 className="text-2xl font-bold mb-6 text-center">Describe Your Situation</h2>
-        <h3 className="text-xl mb-6 text-center">Provide details about your legal situation, and we'll help you understand your rights.</h3>
-      </div>
-        
-        {/* Chat Input */}
+  const handleSend = async (situation) => {
+    // Add user message to the messages state
+    setMessages((prev) => [...prev, { text: situation, sender: 'user' }]);
+
+    // Call the API to get the AI response
+    try {
+      const response = await fetch('/api/rights', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ situation }),
+      });
+      const data = await response.json();
+
+      // Add AI response to the messages state
+      setMessages((prev) => [...prev, { text: data.rights, sender: 'ai' }]);
+    } catch (error) {
+      console.error("Error fetching AI response:", error);
+    }
+  };
+
+  return (
+    <div className="flex flex-col items-center min-h-screen" style={{ marginTop: '5rem' }}>
+      <div className="max-w-4xl mx-auto flex flex-col gap-12">
         <div>
-          <div>
-            <ChatInput />
-          </div>
+          <h2 className="text-2xl font-bold mb-6 text-center">Describe Your Situation</h2>
+          <h3 className="text-xl mb-6 text-center">Provide details about your legal situation, and we'll help you understand your rights.</h3>
+        </div>
+        
+        {/* Chat Messages */}
+        <div className="flex flex-col gap-4 mb-4">
+          {messages.map((msg, index) => (
+            <div key={index} className={`flex items-center ${msg.sender === 'user' ? 'justify-start' : 'justify-end'}`}>
+              {msg.sender === 'user' && (
+                <img src="https://github.com/shadcn.png" alt="User" className="w-8 h-8 rounded-full mr-2" />
+              )}
+              <p className={`p-2 rounded-lg ${msg.sender === 'ai' ? 'bg-gray-200' : 'text-black'}`}>
+                {msg.text}
+              </p>
+              {msg.sender === 'ai' && (
+                <img src="https://vercel.com/api/www/avatar" alt="AI" className="w-8 h-8 rounded-full ml-2" />
+              )}
+            </div>
+          ))}
+        </div>
+
+        {/* Chat Input */}
+        <div className="mb-4">
+          <ChatInput onSend={handleSend} /> {/* Pass handleSend to ChatInput */}
         </div>
         
         {/* Footer */}
-        <div className="text-xs text-muted-foreground text-center mt-4">
-          <p>Free Research Preview. Visionaary Rights may produce inaccurate information about people, places, or facts. <span className="text-primary font-medium">Visionary Rights 2025</span></p>
+        <div className="text-xs text-muted-foreground text-center mt-2">
+          <p>Free Research Preview. This application does not provide legal advice, consult with a qualified attorney for specific legal guidance. <span className="text-primary font-medium">Visionary Rights 2025</span></p>
         </div>
       </div>
     </div>
