@@ -3,6 +3,7 @@
 import React from 'react';
 import { useState } from 'react';
 import Image from 'next/image';
+import { AuroraText } from './magicui/aurora-text';
 import { InfoIcon } from 'lucide-react';
 import {
   Avatar,
@@ -18,7 +19,9 @@ export default function Navbar() {
     <header className="w-full mt-4">
       <div className="container mx-auto px-4 h-16 flex items-center justify-between">
         <div className="flex items-center">
-          <h1 className="text-2xl font-bold text-[#0a2472]">Know Your Rights</h1>
+        <h1 className="text-4xl font-bold tracking-tighter md:text-5xl lg:text-7xl">
+          Know your <AuroraText>Right</AuroraText>
+        </h1>
         </div>
         
         <div className="flex w-30 items-center space-x-4 shadow-lg mx-2 p-2 rounded-lg relative">
